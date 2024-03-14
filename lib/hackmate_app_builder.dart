@@ -13,6 +13,7 @@ import 'package:hackmate/configurations/router/router.gr.dart';
 import 'package:hackmate/features/app/app.dart';
 import 'package:hackmate/features/authentication/data/blocs/auth_cubit.dart';
 import 'package:hackmate/features/authentication/presentation/listeners/login_listener_wrapper.dart';
+import 'package:hackmate/features/chat/data/blocs/chat_cubit.dart';
 import 'package:hackmate/features/home/data/blocs/hackathon_cubit.dart';
 import 'features/app/data/api_client.dart';
 import 'features/team/data/blocs/team_cubit.dart';
@@ -68,12 +69,12 @@ class HackmateAppBuilder extends AppBuilder {
                 )
                 ..loadHackathons(),
             ),
-            // BlocProvider<ChatCubit>(
-            //   create: (context) => ChatCubit()
-            //     ..initialize(
-            //       apiClient: context.read(),
-            //     ),
-            // )
+            BlocProvider<ChatCubit>(
+              create: (context) => ChatCubit()
+                ..initialize(
+                  apiClient: context.read(),
+                ),
+            )
           ],
           builder: (context) => LoginListenerWrapper(
             initialUser: context.read<AuthCubit>().state.user,
@@ -82,7 +83,7 @@ class HackmateAppBuilder extends AppBuilder {
 
               ///Trigger user survey if not attempted
               final teamCubit = context.read<TeamCubit>();
-              // final chatCuibt = context.read<ChatCubit>();
+              final chatCuibt = context.read<ChatCubit>();
               final authCubit = context.read<AuthCubit>();
               final prefs = await context.read<ApiClient>().account.getPrefs();
               final userSurveyAttempted = prefs.data[userSurveyAttemptedPref];
@@ -101,12 +102,12 @@ class HackmateAppBuilder extends AppBuilder {
                 ..listTeams()
                 ..loadVacancies();
 
-              // chatCuibt
-              //   ..loadChatRooms()
-              //   ..getMessagesForChatRooms();
+              chatCuibt
+                ..loadChatRooms()
+                ..getMessagesForChatRooms();
             },
             onLogout: (context) {
-              // context.read<ChatCubit>().clearChats();
+              context.read<ChatCubit>().clearChats();
               print("logout");
             },
             child: AppCubitConsumer(

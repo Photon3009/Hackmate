@@ -8,7 +8,6 @@ import 'package:hackmate/features/home/presentation/hackathon_themes_grid.dart';
 import 'package:hackmate/features/home/presentation/join_team_list.dart';
 import 'package:hackmate/features/home/presentation/upcoming_hackathons_list.dart';
 import 'package:hackmate/features/team/data/blocs/team_cubit.dart';
-
 import '../../../../configurations/configurations.dart';
 import '../presentation.dart';
 

@@ -42,7 +42,7 @@ class BannerCubit extends HydratedCubit<BannerState> with CubitMaybeEmit {
         collectionId: kBannersCollection,
         databaseId: EnvironmentHelper().getDatabaseId(),
         queries: [
-          Query.equal('active', true),
+          // Query.equal('active', true),
         ],
       );
 

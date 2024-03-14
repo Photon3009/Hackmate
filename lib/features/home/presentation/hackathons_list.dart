@@ -24,7 +24,7 @@ class HackathonsList extends StatelessWidget {
 
   final bool shrinkWrap;
 
-  final DateFormat _dateFormat = DateFormat('dd MMM yyyy');
+  final DateFormat _dateFormat = DateFormat('dd-mm-yyyy');
 
   final void Function(int)? onJoinButtonPressed;
 

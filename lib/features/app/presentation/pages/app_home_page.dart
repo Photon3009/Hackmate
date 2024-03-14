@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hackmate/configurations/configurations.dart';
+import 'package:hackmate/configurations/router/router.gr.dart';
 import 'package:hackmate/features/app/data/api_client.dart';
 import 'package:hackmate/features/app/presentation/hackmate_app_bar.dart';
 import 'package:hackmate/features/app/presentation/hackmate_icon_button.dart';
@@ -18,10 +19,10 @@ class AppHomePage extends StatelessWidget implements AutoRouteWrapper {
   @override
   Widget build(BuildContext context) => AutoTabsScaffold(
         routes: const [
-          // HomeRoute(),
-          // DiscoverRouter(),
-          // ChatRouter(),
-          // ProfileRoute(),
+          HomeRoute(),
+          DiscoverRouter(),
+          ChatRouter(),
+          ProfileRoute(),
         ],
         transitionBuilder: (context, child, animation) {
           const begin = Offset(1.0, 0.0);
@@ -59,7 +60,7 @@ class AppHomePage extends StatelessWidget implements AutoRouteWrapper {
                   ? const Offstage()
                   : HackmateIconButton(
                       onPressed: () {
-                        // context.router.push(const DiscoverListRoute());
+                        context.router.push(const DiscoverListRoute());
                       },
                       icon: CupertinoIcons.hand_draw_fill,
                     )

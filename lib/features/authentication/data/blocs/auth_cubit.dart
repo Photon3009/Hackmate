@@ -111,10 +111,11 @@ class AuthCubit extends HydratedCubit<AuthState> with CubitMaybeEmit {
   Future<void> loginWithProvider(String provider) async {
     final accountApi = getAccountApi();
     await accountApi.createOAuth2Session(provider: provider, scopes: []);
+    print("user created");
 
     ///Workaround Delaying for 1 second to allow appwrite to create session
     ///TODO remove when appwrite fixes it
-    await Future.delayed(const Duration(seconds: 1));
+    // await Future.delayed(const Duration(seconds: 3));
 
     await checkIfAccountExists(provider);
   }
@@ -187,7 +188,7 @@ class AuthCubit extends HydratedCubit<AuthState> with CubitMaybeEmit {
       email: accountInfo.email,
     );
 
-    if (provider == 'github') {
+    if (provider == 'google') {
       appUser = appUser.copyWith(
         ghAccessToken: sessionInfo.providerAccessToken,
         ghTokenExpiry: sessionInfo.providerAccessTokenExpiry,

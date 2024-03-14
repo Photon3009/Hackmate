@@ -5,6 +5,7 @@ import 'package:hackmate/configurations/theme/colors.dart';
 import 'package:hackmate/features/app/presentation/pages/app_home_routes.dart';
 import 'package:hackmate/features/authentication/presentation/pages/login_routes.dart';
 import 'package:hackmate/features/home/presentation/pages/hackathon_routes.dart';
+import 'package:hackmate/features/team/presentation/team_routes.dart';
 import 'package:hackmate/features/user_survey.dart/presentation/user_survey_routes.dart';
 
 import 'router.gr.dart';
@@ -37,14 +38,14 @@ class AppRouter extends $AppRouter {
       ],
       children: userSurveyRoutes,
     ),
-    // AutoRoute(
-    //   path: '/team',
-    //   page: TeamRouter.page,
-    //   guards: [
-    //     AuthGuard(),
-    //   ],
-    //   children: teamRoutes,
-    // ),
+    AutoRoute(
+      path: '/team',
+      page: TeamRouter.page,
+      guards: [
+        AuthGuard(),
+      ],
+      children: teamRoutes,
+    ),
     AutoRoute(
       path: '/app-home',
       page: AppHomeRoute.page,
@@ -53,20 +54,20 @@ class AppRouter extends $AppRouter {
       ],
       children: appHomeRoutes,
     ),
-    // CustomRoute(
-    //   path: '/matched',
-    //   page: MatchedDialogRoute.page,
-    //   customRouteBuilder: dialogRouteBuilder,
-    // ),
+    CustomRoute(
+      path: '/matched',
+      page: MatchedDialogRoute.page,
+      customRouteBuilder: dialogRouteBuilder,
+    ),
     AutoRoute(
       path: '/hackathons',
       page: HackathonRouter.page,
       children: hackathonRoutes,
     ),
-    // AutoRoute(
-    //   path: '/chat/:roomID',
-    //   page: ChatRoomRoute.page,
-    // ),
+    AutoRoute(
+      path: '/chat/:roomID',
+      page: ChatRoomRoute.page,
+    ),
   ];
 }
 
