@@ -4,6 +4,7 @@ import 'package:hackmate/configurations/router/auth_guard.dart';
 import 'package:hackmate/configurations/theme/colors.dart';
 import 'package:hackmate/features/app/presentation/pages/app_home_routes.dart';
 import 'package:hackmate/features/authentication/presentation/pages/login_routes.dart';
+import 'package:hackmate/features/chat/presentation/pages/chat_routes.dart';
 import 'package:hackmate/features/home/presentation/pages/hackathon_routes.dart';
 import 'package:hackmate/features/team/presentation/team_routes.dart';
 import 'package:hackmate/features/user_survey.dart/presentation/user_survey_routes.dart';
@@ -65,9 +66,11 @@ class AppRouter extends $AppRouter {
       children: hackathonRoutes,
     ),
     AutoRoute(
-      path: '/chat/:roomID',
-      page: ChatRoomRoute.page,
+      path: '/chat',
+      page: ChatRouter.page,
+      children: chatRoutes,
     ),
+    // AutoRoute(path: '/chat/:roomID', page: ChatRoomRoute.page),
   ];
 }
 

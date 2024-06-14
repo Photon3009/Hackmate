@@ -41,7 +41,7 @@ class DiscoverCard extends StatelessWidget {
             expandedHeight: MediaQuery.of(context).size.height * 0.36,
             flexibleSpace: FlexibleSpaceBar(
               background: CachedNetworkImage(
-                imageUrl: avatar,
+                imageUrl: '$avatar?project=$kProjectId&mode=admin',
                 width: double.infinity,
                 fit: BoxFit.cover,
                 httpHeaders: const {

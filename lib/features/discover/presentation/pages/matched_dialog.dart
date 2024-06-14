@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hackmate/configurations/configurations.dart';
+import 'package:hackmate/configurations/router/router.gr.dart';
 import 'package:hackmate/features/app/presentation/hackmate_auto_leading_button.dart';
 import 'package:hackmate/features/app/presentation/hackmate_scaffold.dart';
 
@@ -51,14 +52,14 @@ class MatchedDialogPage extends StatelessWidget {
                 CircleAvatar(
                   radius: kPadding * 5,
                   backgroundImage: CachedNetworkImageProvider(
-                    avatar1,
+                    '${avatar1}?project=$kProjectId&mode=admin',
                   ),
                 ),
                 const SizedBox(width: kPadding * 2),
                 CircleAvatar(
                   radius: kPadding * 5,
                   backgroundImage: CachedNetworkImageProvider(
-                    avatar2,
+                    '${avatar2}?project=$kProjectId&mode=admin',
                   ),
                 ),
               ],
@@ -75,7 +76,7 @@ class MatchedDialogPage extends StatelessWidget {
             ElevatedButton(
               child: const Text('Send a message'),
               onPressed: () {
-                // context.router.push(const ChatRouter());
+                context.router.push(const ChatRouter());
               },
             ),
             const Spacer(),

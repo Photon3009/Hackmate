@@ -54,7 +54,8 @@ class ChatRoomPage extends StatelessWidget {
         );
         final senderImage = room.senderImage;
         final senderName = room.senderName;
-        final messages = state.messages[room.chatRoomId]!.reversed.toList();
+        final messages =
+            state.messages[room.chatRoomId]?.reversed.toList() ?? [];
 
         return HackmateScaffold(
           appBarElevation: kPadding / 4,

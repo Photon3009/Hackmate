@@ -4,6 +4,7 @@ import 'package:djangoflow_app/djangoflow_app.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hackmate/configurations/router/router.gr.dart';
 import 'package:hackmate/features/app/presentation/hackmate_section_header.dart';
 import 'package:hackmate/features/app/presentation/no_items.dart';
 import 'package:hackmate/features/app/presentation/user_action_list_tile.dart';
@@ -77,7 +78,8 @@ class _UsersList extends StatelessWidget {
                     context.read<DiscoverCubit>().matchProfile(users[index].id);
                   } else {
                     //GOTO chat page
-                    DjangoflowAppSnackbar.showInfo('Coming soon!');
+                    // DjangoflowAppSnackbar.showInfo('Coming soon!');
+                    context.router.push(const ChatRouter());
                   }
                 },
               );
@@ -118,7 +120,7 @@ class _DiscoverListContent extends StatelessWidget {
                     shape: BoxShape.circle,
                     image: DecorationImage(
                       image: CachedNetworkImageProvider(
-                        user.avatar!,
+                        '${user.avatar}?project=$kProjectId&mode=admin',
                       ),
                       fit: BoxFit.fitHeight,
                     ),

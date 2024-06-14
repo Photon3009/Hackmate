@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hackmate/configurations/configurations.dart';
+import 'package:hackmate/configurations/router/router.gr.dart';
 import 'package:hackmate/features/app/presentation/no_items.dart';
 import 'package:hackmate/features/authentication/data/blocs/auth_cubit.dart';
 import 'package:hackmate/features/authentication/data/models/app_user_model.dart';
@@ -131,14 +132,14 @@ class _DiscoverContentState extends State<_DiscoverContent> {
                     if (direction == SwipeDirection.right) {
                       if ((profiles[index].likes ?? [])
                           .contains(context.read<AuthCubit>().state.user!.id)) {
-                        // context.router.push(
-                        //     // MatchedDialogRoute(
-                        //     //   avatar1: profiles[index].avatar!,
-                        //     //   avatar2:
-                        //     //       context.read<AuthCubit>().state.user!.avatar!,
-                        //     //   matchName: profiles[index].name,
-                        //     // ),
-                        //     );
+                        context.router.push(
+                          MatchedDialogRoute(
+                            avatar1: profiles[index].avatar!,
+                            avatar2:
+                                context.read<AuthCubit>().state.user!.avatar!,
+                            matchName: profiles[index].name,
+                          ),
+                        );
                         await context.read<DiscoverCubit>().matchProfile(
                               profiles[index].id,
                             );
@@ -210,18 +211,18 @@ class _BottomBar extends StatelessWidget {
                     controller.next(swipeDirection: SwipeDirection.left);
                   },
                 ),
-                _BottomBarIcon(
-                  color: const Color(0xffF018DB),
-                  icon: HackmateIcons.love,
-                  onPressed: () {
-                    controller.next(swipeDirection: SwipeDirection.right);
-                  },
-                ),
+                // _BottomBarIcon(
+                //   color: const Color(0xffF018DB),
+                //   icon: HackmateIcons.crownfilled,
+                //   onPressed: () {
+                //     controller.next(swipeDirection: SwipeDirection.up);
+                //   },
+                // ),
                 _BottomBarIcon(
                   color: const Color(0xffE5A604),
                   icon: CupertinoIcons.star_fill,
                   onPressed: () {
-                    controller.next(swipeDirection: SwipeDirection.up);
+                    controller.next(swipeDirection: SwipeDirection.right);
                   },
                 ),
                 // _BottomBarIcon(
