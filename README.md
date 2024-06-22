@@ -32,19 +32,19 @@ Organizers can say goodbye to the hassle of setting up a separate Discord server
 - The group created for the hackathon's communication is automatically deleted once the hackathon ends, ensuring a clean and organized experience.
 
   <div align="center">
-<img src="https://github.com/Photon3009/Hackmate/assets/100941430/52e8dbca-887f-4f8b-bcbe-8918db20ab75" alt="animated " height="620" width="1920" />
+<img src="https://github.com/Photon3009/Hackmate/assets/100941430/52e8dbca-887f-4f8b-bcbe-8918db20ab75" alt="animated " height="620" width="1980" />
 </div>
 
   <div align="center">
-<img src="https://github.com/Photon3009/Hackmate/assets/100941430/d2e202fb-ed61-41e2-aed5-a1fab664e209" alt="animated " height="620" width="1920" />
+<img src="https://github.com/Photon3009/Hackmate/assets/100941430/d2e202fb-ed61-41e2-aed5-a1fab664e209" alt="animated " height="620" width="1980" />
 </div>
 
   <div align="center">
-<img src="https://github.com/Photon3009/Hackmate/assets/100941430/e4d58dbc-3cec-43d5-878d-480a019ab696" alt="animated " height="620" width="1920" />
+<img src="https://github.com/Photon3009/Hackmate/assets/100941430/e4d58dbc-3cec-43d5-878d-480a019ab696" alt="animated " height="620" width="1980" />
 </div>
 
   <div align="center">
-<img src="https://github.com/Photon3009/Hackmate/assets/100941430/603ac179-040e-485e-be60-8e88fef0fb4c" alt="animated " height="620" width="1920" />
+<img src="https://github.com/Photon3009/Hackmate/assets/100941430/603ac179-040e-485e-be60-8e88fef0fb4c" alt="animated " height="620" width="1980" />
 </div>
 
 ## Tech Stack
