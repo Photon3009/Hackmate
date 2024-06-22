@@ -23,6 +23,10 @@ class AppRouter extends $AppRouter {
   final List<AutoRoute> routes = [
     AutoRoute(path: '*', page: UnknownRoute.page),
     AutoRoute(
+      path: '/splash',
+      page: SplashRoute.page,
+    ),
+    AutoRoute(
       path: '/login',
       page: LoginRouter.page,
       children: loginRoutes,
@@ -65,12 +69,7 @@ class AppRouter extends $AppRouter {
       page: HackathonRouter.page,
       children: hackathonRoutes,
     ),
-    AutoRoute(
-      path: '/chat',
-      page: ChatRouter.page,
-      children: chatRoutes,
-    ),
-    // AutoRoute(path: '/chat/:roomID', page: ChatRoomRoute.page),
+    AutoRoute(path: '/chat/:roomID', page: ChatRoomRoute.page),
   ];
 }
 

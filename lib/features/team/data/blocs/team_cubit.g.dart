@@ -21,6 +21,10 @@ _$TeamStateImpl _$$TeamStateImplFromJson(Map<String, dynamic> json) =>
               ?.map((e) => TeamVacancy.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
+      joinRequests: (json['joinRequests'] as List<dynamic>?)
+              ?.map((e) => AppUser.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$$TeamStateImplToJson(_$TeamStateImpl instance) =>
@@ -30,4 +34,5 @@ Map<String, dynamic> _$$TeamStateImplToJson(_$TeamStateImpl instance) =>
       'isLoading': instance.isLoading,
       'pickedImagePath': instance.pickedImagePath,
       'vacancies': instance.vacancies,
+      'joinRequests': instance.joinRequests,
     };

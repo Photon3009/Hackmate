@@ -29,6 +29,17 @@ class ProfilePage extends StatelessWidget {
                           : const {
                               'X-Appwrite-Project': kProjectId,
                             },
+                      imageBuilder: (context, imageProvider) => Container(
+                        width: double.infinity,
+                        height: double.infinity,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: DecorationImage(
+                            image: imageProvider,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
           ),
@@ -74,7 +85,7 @@ class ProfilePage extends StatelessWidget {
                   title: 'Personal Information',
                 ),
                 const SizedBox(
-                  height: kPadding * 2,
+                  height: kPadding,
                 ),
                 _ProfileListTile(
                   onTap: () {
@@ -83,7 +94,7 @@ class ProfilePage extends StatelessWidget {
                   title: 'Skills & Interests',
                 ),
                 const SizedBox(
-                  height: kPadding * 2,
+                  height: kPadding,
                 ),
                 _ProfileListTile(
                   onTap: () {
@@ -96,7 +107,7 @@ class ProfilePage extends StatelessWidget {
                   title: 'Open Source Licenses',
                 ),
                 const SizedBox(
-                  height: kPadding * 2,
+                  height: kPadding,
                 ),
                 _ProfileListTile(
                   onTap: () {
@@ -130,9 +141,8 @@ class _ProfileListTile extends StatelessWidget {
       onTap: onTap,
       title: Text(
         title,
-        style: theme.textTheme.titleLarge?.copyWith(
-          color: theme.primaryColor,
-        ),
+        style: theme.textTheme.titleMedium
+            ?.copyWith(color: theme.primaryColor, fontSize: 18),
       ),
       trailing: Icon(
         Icons.chevron_right,

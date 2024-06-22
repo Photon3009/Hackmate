@@ -77,9 +77,7 @@ class _UsersList extends StatelessWidget {
                   if (isRequests) {
                     context.read<DiscoverCubit>().matchProfile(users[index].id);
                   } else {
-                    //GOTO chat page
-                    // DjangoflowAppSnackbar.showInfo('Coming soon!');
-                    context.router.push(const ChatRouter());
+                    context.tabsRouter.setActiveIndex(2);
                   }
                 },
               );

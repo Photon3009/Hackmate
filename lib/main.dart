@@ -36,7 +36,7 @@ Future<void> main() async {
       if (!kIsWeb) {
         initialDeepLink = (await appLinksRepository.getInitialLink())?.path;
       }
-      print(initialDeepLink);
+      debugPrint(initialDeepLink);
       // initialize router
       final router = AppRouter();
 

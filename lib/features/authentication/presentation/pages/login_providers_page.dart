@@ -19,7 +19,7 @@ class LoginProvidersPage extends StatelessWidget {
           child: Column(
             children: [
               StackedIllustration(
-                illustration: Assets.images.login.image(),
+                illustration: Assets.images.escape.image(),
               ),
               const DescriptionContent(
                 tagline: 'Get ready to conquer the world of hackathons. '
@@ -69,63 +69,65 @@ class _LoginSheet extends StatelessWidget {
             authButtonType: AuthButtonType.outlined,
           ),
           buttonSpacingSizedBox,
-          Row(
-            children: [
-              Expanded(
-                flex: 1,
-                child: Container(
-                  height: dividerHeight,
-                  color: dividerColor,
-                ),
-              ),
-              Expanded(
-                flex: 2,
-                child: Center(
-                  child: Text(
-                    'Or continue with',
-                    style: Theme.of(context).textTheme.titleSmall,
-                  ),
-                ),
-              ),
-              Expanded(
-                flex: 1,
-                child: Container(
-                  height: dividerHeight,
-                  color: dividerColor,
-                ),
-              ),
-            ],
-          ),
-          buttonSpacingSizedBox,
-          Container(
-            height: kButtonHeight,
-            decoration: BoxDecoration(
-              border: Border.all(color: Theme.of(context).primaryColor),
-              borderRadius: BorderRadius.circular(kButtonRadius),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const AuthButton(
-                  icon: HackmateIcons.github,
-                  provider: 'github',
-                  authButtonType: AuthButtonType.icon,
-                ),
-                buttonSpacingSizedBox,
-                const AuthButton(
-                  icon: HackmateIcons.twitter,
-                  provider: 'twitter',
-                  authButtonType: AuthButtonType.icon,
-                ),
-                buttonSpacingSizedBox,
-                const AuthButton(
-                  icon: HackmateIcons.linkedin,
-                  provider: 'linkedin',
-                  authButtonType: AuthButtonType.icon,
-                ),
-              ],
-            ),
-          ),
+
+          ///TO DO
+          // Row(
+          //   children: [
+          //     Expanded(
+          //       flex: 1,
+          //       child: Container(
+          //         height: dividerHeight,
+          //         color: dividerColor,
+          //       ),
+          //     ),
+          //     Expanded(
+          //       flex: 2,
+          //       child: Center(
+          //         child: Text(
+          //           'Or continue with',
+          //           style: Theme.of(context).textTheme.titleSmall,
+          //         ),
+          //       ),
+          //     ),
+          //     Expanded(
+          //       flex: 1,
+          //       child: Container(
+          //         height: dividerHeight,
+          //         color: dividerColor,
+          //       ),
+          //     ),
+          //   ],
+          // ),
+          // buttonSpacingSizedBox,
+          // Container(
+          //   height: kButtonHeight,
+          //   decoration: BoxDecoration(
+          //     border: Border.all(color: Theme.of(context).primaryColor),
+          //     borderRadius: BorderRadius.circular(kButtonRadius),
+          //   ),
+          //   child: Row(
+          //     mainAxisAlignment: MainAxisAlignment.center,
+          //     children: [
+          //       const AuthButton(
+          //         icon: HackmateIcons.github,
+          //         provider: 'github',
+          //         authButtonType: AuthButtonType.icon,
+          //       ),
+          //       buttonSpacingSizedBox,
+          //       const AuthButton(
+          //         icon: HackmateIcons.twitter,
+          //         provider: 'twitter',
+          //         authButtonType: AuthButtonType.icon,
+          //       ),
+          //       buttonSpacingSizedBox,
+          //       const AuthButton(
+          //         icon: HackmateIcons.linkedin,
+          //         provider: 'linkedin',
+          //         authButtonType: AuthButtonType.icon,
+          //       ),
+          //     ],
+          //   ),
+          // ),
           const SizedBox(
             height: kPadding * 4,
           ),

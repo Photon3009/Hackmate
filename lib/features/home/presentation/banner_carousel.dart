@@ -74,76 +74,82 @@ class _BannerPlaceholder extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return Card(
-      color: theme.primaryColor,
-      margin: const EdgeInsets.symmetric(
-        horizontal: kPadding * 4,
-        vertical: kPadding * 2,
-      ),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(
-          kButtonRadius,
-        ),
-      ),
-      child: Shimmer.fromColors(
-        baseColor: Colors.white.withOpacity(0.4),
-        highlightColor: Colors.white,
-        child: Container(
-          padding: const EdgeInsets.all(
-            kPadding * 4,
+    return Column(
+      children: [
+        Card(
+          color: const Color(0xff222126),
+          margin: const EdgeInsets.fromLTRB(
+              kPadding * 4, kPadding * 2, kPadding * 4, 0),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(
+              kButtonRadius,
+            ),
           ),
-          height: kBannerHeight,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                flex: 4,
-                child: Column(
+          child: Shimmer.fromColors(
+            baseColor: Colors.white.withOpacity(0.4),
+            highlightColor: Colors.white,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(kButtonRadius),
+              child: Container(
+                height: kBannerHeight,
+                width: double.infinity,
+                padding: const EdgeInsets.all(kPadding * 4),
+                child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      height: kPadding * 5,
-                      color: theme.primaryColor,
+                    Expanded(
+                      flex: 4,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Spacer(),
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(
+                                kButtonRadius,
+                              ),
+                              color: theme.primaryColor,
+                            ),
+                            width: 180,
+                            height: kButtonHeight,
+                          ),
+                        ],
+                      ),
                     ),
                     const SizedBox(
-                      height: kPadding * 3,
-                    ),
-                    Container(
-                      color: theme.primaryColor,
-                      height: kPadding * 8,
-                    ),
-                    const Spacer(),
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(
-                          kButtonRadius,
-                        ),
-                        color: theme.primaryColor,
-                      ),
-                      width: kPadding * 22.5,
-                      height: kButtonHeight,
+                      width: kPadding,
                     ),
                   ],
                 ),
               ),
-              const SizedBox(
-                width: kPadding * 2,
-              ),
-              Expanded(
-                flex: 1,
-                child: Container(
-                  width: kPadding * 6,
-                  height: kPadding * 6,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: theme.primaryColor,
-                  ),
-                ),
-              )
-            ],
+            ),
           ),
         ),
-      ),
+        const SizedBox(
+          height: kPadding,
+        ),
+        Shimmer.fromColors(
+          baseColor: Colors.black.withOpacity(0.4),
+          highlightColor: Colors.white,
+          child: Container(
+            width: 200,
+            height: 20,
+            color: theme.primaryColor,
+          ),
+        ),
+        const SizedBox(
+          height: kPadding / 2,
+        ),
+        Shimmer.fromColors(
+          baseColor: Colors.black.withOpacity(0.4),
+          highlightColor: Colors.white,
+          child: Container(
+            width: 150,
+            height: 15,
+            color: theme.primaryColor,
+          ),
+        ),
+      ],
     );
   }
 }

@@ -138,7 +138,6 @@ class AppHomePage extends StatelessWidget implements AutoRouteWrapper {
     switch (index) {
       case 0:
         return 'Home';
-
       case 1:
         return 'Discover';
       case 2:

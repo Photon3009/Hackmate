@@ -23,6 +23,9 @@ class HackathonThemesGrid extends StatelessWidget {
           childAspectRatio: 3,
         ),
         itemBuilder: (BuildContext context, int index) => ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color(0xff222126),
+          ),
           onPressed: () {
             context.router.push(
               HackathonRouter(
@@ -35,18 +38,60 @@ class HackathonThemesGrid extends StatelessWidget {
             );
           },
           child: Padding(
-            padding: const EdgeInsets.all(
-              kPadding,
+            padding: EdgeInsets.only(
+              bottom: kPadding,
+              left: kHackathonThemesList[index] == 'Blockchain'
+                  ? 0
+                  : kPadding / 2,
+              right: kHackathonThemesList[index] == 'Blockchain'
+                  ? 0
+                  : kPadding / 2,
+              top: kPadding,
             ),
-            child: Text(
-              kHackathonThemesList[index],
-              textAlign: TextAlign.start,
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
+            child: Row(
+              mainAxisSize:
+                  MainAxisSize.min, // Adjusts size according to content
+              children: [
+                // Image according to the theme name
+                Image.asset(
+                  getThemeImageUrl(kHackathonThemesList[index]),
+                  width: 30, // Adjust the size as needed
+                  height: 30, // Error widget if image fails to load
+                ),
+                SizedBox(
+                    width: kHackathonThemesList[index] == 'Blockchain'
+                        ? 1
+                        : 3), // Space between image and text
+                Text(
+                  kHackathonThemesList[index],
+                  textAlign: TextAlign.start,
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                ),
+              ],
             ),
           ),
         ),
       );
+}
+
+String getThemeImageUrl(String themeName) {
+  switch (themeName) {
+    case 'Web Dev':
+      return Assets.images.webd.path;
+    case 'App Dev':
+      return Assets.images.app1.path;
+    case 'ML':
+      return Assets.images.mlai.path;
+    case 'Blockchain':
+      return Assets.images.blockd.path;
+    case 'AR/VR':
+      return Assets.images.arvr.path;
+    case 'Cloud':
+      return Assets.images.cloud.path;
+    default:
+      return Assets.images.webd.path;
+  }
 }

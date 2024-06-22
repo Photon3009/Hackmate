@@ -76,12 +76,20 @@ class HackmateAppBuilder extends AppBuilder {
                 ),
             )
           ],
-          builder: (context) => LoginListenerWrapper(
+          builder: (context) =>
+              // FutureBuilder(
+              //   future: _initializeApp(context),
+              //   builder: (context, snapshot) {
+              //     if (snapshot.connectionState == ConnectionState.waiting) {
+              //       return const SplashScreen(); // Show splash screen while loading
+              //     } else {
+              //       return
+              LoginListenerWrapper(
             initialUser: context.read<AuthCubit>().state.user,
             onLogin: (context, user) async {
-              print("login");
+              debugPrint("LoggedIn");
 
-              ///Trigger user survey if not attempted
+              /// Trigger user survey if not attempted
               final teamCubit = context.read<TeamCubit>();
               final chatCuibt = context.read<ChatCubit>();
               final authCubit = context.read<AuthCubit>();
@@ -100,7 +108,8 @@ class HackmateAppBuilder extends AppBuilder {
               teamCubit
                 ..loadUserTeam()
                 ..listTeams()
-                ..loadVacancies();
+                ..loadVacancies()
+                ..loadJoinRequests();
 
               chatCuibt
                 ..loadChatRooms()
@@ -108,7 +117,7 @@ class HackmateAppBuilder extends AppBuilder {
             },
             onLogout: (context) {
               context.read<ChatCubit>().clearChats();
-              print("logout");
+              debugPrint("logout");
             },
             child: AppCubitConsumer(
               listenWhen: (previous, current) =>
@@ -141,12 +150,9 @@ class HackmateAppBuilder extends AppBuilder {
                       ? DeepLink.path(initialDeepLink)
                       : const DeepLink(
                           [
-                            AppHomeRoute(),
+                            SplashRoute(),
                           ],
                         ),
-                  // List of global navigation obsersers here
-                  // SentryNavigationObserver
-                  // navigatorObservers: () => {RouteObserver()},
                 ),
                 builder: (context, child) => AppResponsiveLayoutBuilder(
                   child: SandboxBanner(
@@ -164,7 +170,7 @@ class HackmateAppBuilder extends AppBuilder {
                                       path,
                                       onFailure: (failure) {
                                         appRouter.navigate(
-                                          const AppHomeRoute(),
+                                          const SplashRoute(),
                                         );
                                       },
                                     );
@@ -179,4 +185,7 @@ class HackmateAppBuilder extends AppBuilder {
             ),
           ),
         );
+  // static Future<void> _initializeApp(BuildContext context) async {
+  //   await Future.delayed(const Duration(seconds: 3));
+  // }
 }

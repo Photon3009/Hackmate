@@ -14,23 +14,64 @@ import 'package:flutter/services.dart';
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/app1.png
+  AssetGenImage get app1 => const AssetGenImage('assets/images/app1.png');
+
+  /// File path: assets/images/arvr.png
+  AssetGenImage get arvr => const AssetGenImage('assets/images/arvr.png');
+
+  /// File path: assets/images/blockd.png
+  AssetGenImage get blockd => const AssetGenImage('assets/images/blockd.png');
+
+  /// File path: assets/images/cloud.jpg
+  AssetGenImage get cloud => const AssetGenImage('assets/images/cloud.jpg');
+
   /// File path: assets/images/connected_world.png
   AssetGenImage get connectedWorld =>
       const AssetGenImage('assets/images/connected_world.png');
+
+  /// File path: assets/images/dev_profiles.png
+  AssetGenImage get devProfiles =>
+      const AssetGenImage('assets/images/dev_profiles.png');
 
   /// File path: assets/images/empty_box.png
   AssetGenImage get emptyBox =>
       const AssetGenImage('assets/images/empty_box.png');
 
+  /// File path: assets/images/enter_details.png
+  AssetGenImage get enterDetails =>
+      const AssetGenImage('assets/images/enter_details.png');
+
   /// File path: assets/images/enter_otp.png
   AssetGenImage get enterOtp =>
       const AssetGenImage('assets/images/enter_otp.png');
+
+  /// File path: assets/images/escape.png
+  AssetGenImage get escape => const AssetGenImage('assets/images/escape.png');
+
+  /// File path: assets/images/hackmate_logo.png
+  AssetGenImage get hackmateLogo =>
+      const AssetGenImage('assets/images/hackmate_logo.png');
+
+  /// File path: assets/images/hand_shake.png
+  AssetGenImage get handShake =>
+      const AssetGenImage('assets/images/hand_shake.png');
+
+  /// File path: assets/images/joy.png
+  AssetGenImage get joy => const AssetGenImage('assets/images/joy.png');
+
+  /// File path: assets/images/keyboard.png
+  AssetGenImage get keyboard =>
+      const AssetGenImage('assets/images/keyboard.png');
 
   /// File path: assets/images/login.png
   AssetGenImage get login => const AssetGenImage('assets/images/login.png');
 
   /// File path: assets/images/logo.png
   AssetGenImage get logo => const AssetGenImage('assets/images/logo.png');
+
+  /// File path: assets/images/mlai.png
+  AssetGenImage get mlai => const AssetGenImage('assets/images/mlai.png');
 
   /// File path: assets/images/pair_programming.png
   AssetGenImage get pairProgramming =>
@@ -43,16 +84,32 @@ class $AssetsImagesGen {
   /// File path: assets/images/vector_bg.svg
   SvgGenImage get vectorBg => const SvgGenImage('assets/images/vector_bg.svg');
 
+  /// File path: assets/images/webd.png
+  AssetGenImage get webd => const AssetGenImage('assets/images/webd.png');
+
   /// List of all assets
   List<dynamic> get values => [
+        app1,
+        arvr,
+        blockd,
+        cloud,
         connectedWorld,
+        devProfiles,
         emptyBox,
+        enterDetails,
         enterOtp,
+        escape,
+        hackmateLogo,
+        handShake,
+        joy,
+        keyboard,
         login,
         logo,
+        mlai,
         pairProgramming,
         swipeProfiles,
-        vectorBg
+        vectorBg,
+        webd
       ];
 }
 

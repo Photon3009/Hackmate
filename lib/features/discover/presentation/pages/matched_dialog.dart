@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:djangoflow_app/djangoflow_app.dart';
 import 'package:flutter/material.dart';
 import 'package:hackmate/configurations/configurations.dart';
 import 'package:hackmate/configurations/router/router.gr.dart';
@@ -76,7 +77,8 @@ class MatchedDialogPage extends StatelessWidget {
             ElevatedButton(
               child: const Text('Send a message'),
               onPressed: () {
-                context.router.push(const ChatRouter());
+                //To do
+                DjangoflowAppSnackbar.showInfo("Coming Soon!");
               },
             ),
             const Spacer(),

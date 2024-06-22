@@ -58,11 +58,12 @@ class AppColors {
       );
 
   // Light theme colors
-  static const Color primary = Color(0xff7E57C2);
+  static const Color primary = Color(0xff7967CC);
   static const Color onPrimary = Colors.white;
+  static const Color primaryBlack = Color(0xff222126);
   static const Color primaryContainer = Color(0xffE5DEFF);
   static const Color onPrimaryContainer = Color(0xff1A0063);
-  static const Color secondary = Color(0xff684FA4);
+  static const Color secondary = Color(0xff222126);
   static const Color onSecondary = Colors.white;
   static const Color secondaryContainer = Color(0xffE9DDFF);
   static const Color onSecondaryContainer = Color(0xff23005C);

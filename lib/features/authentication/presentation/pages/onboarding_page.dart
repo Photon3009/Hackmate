@@ -26,18 +26,18 @@ class OnboardingPage extends StatelessWidget {
                 controller: controller,
                 children: [
                   SingleOnboardingPage(
-                    illustration: Assets.images.pairProgramming.image(),
+                    illustration: Assets.images.keyboard.image(),
                     tagline:
                         'Swipe, Match, Code: The Ultimate Hackathon Networking App.',
                   ),
                   SingleOnboardingPage(
-                    illustration: Assets.images.swipeProfiles.image(),
+                    illustration: Assets.images.devProfiles.image(),
                     tagline: 'Harness the power of our intuitive swiping '
                         'feature for building winning hackathon teams',
                     flip: true,
                   ),
                   SingleOnboardingPage(
-                    illustration: Assets.images.connectedWorld.image(),
+                    illustration: Assets.images.handShake.image(),
                     tagline: 'Discover like-minded individuals and form'
                         ' unbeatable teams to take on any challenge.',
                   ),

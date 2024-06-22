@@ -24,91 +24,101 @@ class BannerContent extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final textTheme = theme.textTheme;
-    final primaryColor = theme.primaryColor;
 
-    return Container(
-      margin: const EdgeInsets.symmetric(
-        vertical: kPadding * 2,
-        horizontal: kPadding * 4,
-      ),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(
-          kButtonRadius,
-        ),
-        color: Theme.of(context).primaryColor,
-      ),
-      child: SizedBox(
-        height: kBannerHeight,
-        width: double.infinity,
-        child: Padding(
-          padding: const EdgeInsets.all(
-            kPadding * 4,
+    return Column(
+      children: [
+        Container(
+          margin: const EdgeInsets.fromLTRB(
+              kPadding * 4, kPadding * 2, kPadding * 4, 0),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(
+              kButtonRadius,
+            ),
+            color: Theme.of(context).primaryColor,
           ),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                flex: 4,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      heading,
-                      style: textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
+          child: SizedBox(
+            height: kBannerHeight,
+            width: double.infinity,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(kButtonRadius),
+              child: Stack(
+                fit: StackFit.expand,
+                children: [
+                  // Background Image
+                  CachedNetworkImage(
+                    imageUrl: imgUrl,
+                    fadeInCurve: Curves.easeIn,
+                    fit: BoxFit.cover,
+                  ),
+                  // Content
+                  Padding(
+                    padding: const EdgeInsets.all(
+                      kPadding * 4,
                     ),
-                    const SizedBox(
-                      height: kPadding,
-                    ),
-                    Text(
-                      subHeading,
-                      style: textTheme.labelSmall?.copyWith(
-                        color: Colors.white,
-                      ),
-                    ),
-                    const Spacer(),
-                    SizedBox(
-                      width: 180,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white,
-                          foregroundColor: primaryColor,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          flex: 4,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Spacer(),
+                              SizedBox(
+                                width: 180,
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.white,
+                                    foregroundColor:
+                                        Theme.of(context).primaryColor,
+                                  ),
+                                  onPressed: () {
+                                    if (onButtonPressed == null) {
+                                      return;
+                                    } else if (onButtonPressed!
+                                        .contains('launch')) {
+                                      launchUrlString(
+                                        onButtonPressed!
+                                            .replaceFirst('launch:', ''),
+                                        mode: LaunchMode.externalApplication,
+                                      );
+                                    }
+                                  },
+                                  child: Text(
+                                    buttonText,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                        onPressed: () {
-                          if (onButtonPressed == null) {
-                            return;
-                          } else if (onButtonPressed!.contains('launch')) {
-                            launchUrlString(
-                              onButtonPressed!.replaceFirst('launch:', ''),
-                              mode: LaunchMode.externalApplication,
-                            );
-                          }
-                        },
-                        child: Text(
-                          buttonText,
+                        const SizedBox(
+                          width: kPadding,
                         ),
-                      ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-              const SizedBox(
-                width: kPadding,
-              ),
-              Expanded(
-                flex: 1,
-                child: CachedNetworkImage(
-                  imageUrl: imgUrl,
-                  fadeInCurve: Curves.easeIn,
-                  fit: BoxFit.cover,
-                ),
-              )
-            ],
+            ),
           ),
         ),
-      ),
+        const SizedBox(
+          height: kPadding,
+        ),
+        Text(
+          heading,
+          style: textTheme.titleMedium?.copyWith(
+            fontWeight: FontWeight.bold,
+            color: const Color(0xff222126),
+          ),
+        ),
+        Text(
+          subHeading,
+          style: textTheme.labelSmall?.copyWith(
+              color: const Color(0xff222126), fontWeight: FontWeight.w500),
+        ),
+      ],
     );
   }
 }

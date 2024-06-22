@@ -5,16 +5,14 @@ import 'package:hackmate/features/authentication/data/models/app_user_model.dart
 
 class LoginListener extends BlocListener<AuthCubit, AuthState> {
   LoginListener({
-    Key? key,
+    super.key,
     void Function(BuildContext context, AppUser user)? onLogin,
     void Function(BuildContext context)? onLogout,
-    Widget? child,
+    super.child,
   }) : super(
-            key: key,
             listener: (context, authState) => authState.user != null
                 ? onLogin?.call(context, authState.user!)
                 : onLogout?.call(context),
-            child: child,
             // Since AutoLogin will trigger a state change for isLoading
             // we need to listen to it as well as
             // And user state is preserverd in HydratedBloc

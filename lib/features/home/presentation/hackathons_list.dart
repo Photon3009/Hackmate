@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:hackmate/configurations/configurations.dart';
 import 'package:hackmate/features/home/data/model/hackathon_model.dart';
 import 'package:intl/intl.dart';
 
@@ -24,7 +25,7 @@ class HackathonsList extends StatelessWidget {
 
   final bool shrinkWrap;
 
-  final DateFormat _dateFormat = DateFormat('dd-mm-yyyy');
+  final DateFormat _dateFormat = DateFormat('M/d/y');
 
   final void Function(int)? onJoinButtonPressed;
 
@@ -85,7 +86,7 @@ class HackathonsList extends StatelessWidget {
                       hackathon.name,
                       style: theme.textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.bold,
-                        color: const Color(0xff2D3B70),
+                        color: const Color(0xff222126),
                       ),
                     ),
                     const SizedBox(
@@ -96,7 +97,7 @@ class HackathonsList extends StatelessWidget {
                         Text(
                           hackathon.theme,
                           style: theme.textTheme.labelLarge?.copyWith(
-                            color: theme.primaryColor,
+                            color: AppColors.primaryBlack,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -137,6 +138,10 @@ class HackathonsList extends StatelessWidget {
                           height: kPadding * 5,
                           width: kPadding * 12,
                           child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  theme.primaryColor, // Background color
+                            ),
                             onPressed: () => onJoinButtonPressed?.call(index),
                             child: const Text('Join'),
                           ),

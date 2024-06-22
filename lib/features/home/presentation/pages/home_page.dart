@@ -95,6 +95,9 @@ class _TeamActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ElevatedButton.icon(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: const Color(0xff222126), // Background color
+        ),
         icon: hasTeam ? const Icon(Icons.people) : const Icon(Icons.add),
         onPressed: () {
           if (hasTeam) {

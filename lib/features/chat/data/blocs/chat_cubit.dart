@@ -40,6 +40,7 @@ class ChatCubit extends HydratedCubit<ChatState> with CubitMaybeEmit {
   }
 
   Future<void> loadChatRooms() async {
+    print("load started");
     final userChatRoomIds = AuthCubit.instance.state.user?.chatRooms ?? [];
     if (userChatRoomIds.isEmpty) {
       return;
@@ -83,10 +84,12 @@ class ChatCubit extends HydratedCubit<ChatState> with CubitMaybeEmit {
     emit(
       state.copyWith(rooms: [...state.rooms, ...rooms], isLoading: false),
     );
+    print("load ended");
   }
 
   Future<void> getMessagesForChatRooms() async {
     try {
+      print("getmsgs started");
       for (final room in state.rooms) {
         emit(
           state.copyWith(
@@ -123,7 +126,8 @@ class ChatCubit extends HydratedCubit<ChatState> with CubitMaybeEmit {
             isLoading: false,
           ),
         );
-        subscribeToChatRooms();
+        print("getmsgs ended");
+        subscribeToChatRoom();
       }
     } catch (e) {
       emit(state.copyWith(isLoading: false));
@@ -140,14 +144,16 @@ class ChatCubit extends HydratedCubit<ChatState> with CubitMaybeEmit {
     );
   }
 
-  Future<void> subscribeToChatRooms() async {
+  void subscribeToChatRoom() {
     final subscription = _apiClient!.realtime.subscribe(
       [
         'documents',
       ],
     );
-
+    print("subscribe to room");
     subscription.stream.listen((event) {
+      // Handle real-time events (e.g., new messages)
+      print("Stream working");
       if (event.payload.containsKey('message') &&
           event.payload.containsKey('sender_name')) {
         final message = ChatMessage.fromJson(event.payload);

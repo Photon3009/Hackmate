@@ -1,5 +1,6 @@
 import 'package:appwrite/appwrite.dart';
 import 'package:appwrite/models.dart';
+import 'package:djangoflow_app/djangoflow_app.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hackmate/configurations/constants/constants.dart';
 import 'package:hackmate/features/app/data/api_client.dart';
@@ -23,6 +24,7 @@ class TeamState with _$TeamState {
     @Default(false) bool isLoading,
     String? pickedImagePath,
     @Default([]) List<TeamVacancy> vacancies,
+    @Default([]) List<AppUser> joinRequests, //join team feature
   }) = _TeamState;
 
   factory TeamState.fromJson(Map<String, dynamic> json) =>
@@ -260,6 +262,92 @@ class TeamCubit extends HydratedCubit<TeamState> with CubitMaybeEmit {
       documentId: ID.unique(),
       data: vacancyJson,
     );
+  }
+
+  Future<void> loadJoinRequests() async {
+    emit(state.copyWith(isLoading: true));
+
+    final teamId = AuthCubit.instance.state.user?.teamId ?? '';
+    if (teamId.isEmpty) {
+      emit(state.copyWith(isLoading: false, joinRequests: []));
+      return;
+    }
+
+    final vacancyDocs = await _apiClient!.databases.listDocuments(
+      databaseId: EnvironmentHelper().getDatabaseId(),
+      collectionId: kTeamVacancyCollection,
+      queries: [Query.equal('team_id', teamId)],
+    );
+
+    List<String> joinRequestIds = [];
+    for (final vacancy in vacancyDocs.documents) {
+      joinRequestIds
+          .addAll(List<String>.from(vacancy.data['join_requests'] ?? []));
+    }
+
+    List<AppUser> joinRequests = [];
+    for (final id in joinRequestIds.toSet()) {
+      final userDoc = await _apiClient!.databases.getDocument(
+        databaseId: EnvironmentHelper().getDatabaseId(),
+        collectionId: kUsersCollection,
+        documentId: id,
+      );
+      final user = AppUser.fromJson(userDoc.data);
+      joinRequests.add(user);
+    }
+
+    emit(state.copyWith(isLoading: false, joinRequests: joinRequests));
+  }
+
+  Future<void> handleJoinRequest(
+      {required String userId, required bool accept}) async {
+    final team = state.team!;
+    if (accept) {
+      final updatedMemberIDs = List<String>.from(team.memberIDs ?? [])
+        ..add(userId);
+      final updatedTeam = team.copyWith(memberIDs: updatedMemberIDs);
+      await _apiClient!.databases.updateDocument(
+        databaseId: EnvironmentHelper().getDatabaseId(),
+        collectionId: kTeamsCollection,
+        documentId: team.id,
+        data: updatedTeam.toJson(),
+      );
+      emit(state.copyWith(team: team));
+    }
+    final vacancyDocs = await _apiClient!.databases.listDocuments(
+      databaseId: EnvironmentHelper().getDatabaseId(),
+      collectionId: kTeamVacancyCollection,
+      queries: [Query.equal('team_id', team.id)],
+    );
+
+    for (final vacancy in vacancyDocs.documents) {
+      final joinRequests =
+          List<String>.from(vacancy.data['join_requests'] ?? []);
+      if (joinRequests.contains(userId)) {
+        joinRequests.remove(userId);
+        await _apiClient!.databases.updateDocument(
+          databaseId: EnvironmentHelper().getDatabaseId(),
+          collectionId: kTeamVacancyCollection,
+          documentId: vacancy.$id,
+          data: {
+            'join_requests': joinRequests,
+          },
+        );
+      }
+    }
+    final updatedJoinRequests = List<AppUser>.from(state.joinRequests)
+      ..removeWhere((user) => user.id == userId);
+    if (accept) {
+      DjangoflowAppSnackbar.showInfo(
+        'Request Accepted!',
+      );
+    } else {
+      DjangoflowAppSnackbar.showInfo(
+        'Request Denied!',
+      );
+    }
+    loadUserTeam();
+    emit(state.copyWith(joinRequests: updatedJoinRequests));
   }
 
   UserTeam getTeam(String teamId) =>

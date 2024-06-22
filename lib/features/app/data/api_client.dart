@@ -15,7 +15,7 @@ class ApiClient {
   }) {
     client.setEndpoint(endpoint);
     client.setProject(projectId);
-    client.setSelfSigned(status: selfSigned);
+    // client.setSelfSigned(status: selfSigned);
 
     account = Account(client);
     storage = Storage(client);

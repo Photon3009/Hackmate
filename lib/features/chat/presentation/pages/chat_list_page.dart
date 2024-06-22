@@ -41,7 +41,7 @@ class ChatListPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Padding(
@@ -132,6 +132,7 @@ class ChatListPage extends StatelessWidget {
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
                                       image: DecorationImage(
+                                        fit: BoxFit.cover,
                                         image: CachedNetworkImageProvider(
                                           senderImage,
                                           headers: senderImage
@@ -159,6 +160,7 @@ class ChatListPage extends StatelessWidget {
                                       room.senderName,
                                       style:
                                           theme.textTheme.labelLarge?.copyWith(
+                                        fontSize: 15,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
@@ -206,7 +208,7 @@ class _GroupChatBubble extends StatelessWidget {
           child: Column(
             children: [
               CircleAvatar(
-                radius: kPadding * 5,
+                radius: kPadding * 4.5,
                 backgroundImage: CachedNetworkImageProvider(
                   avatar,
                   headers: avatar.startsWith(kApiEndpoint)
@@ -221,10 +223,10 @@ class _GroupChatBubble extends StatelessWidget {
               ),
               Text(
                 name,
-                style: const TextStyle(
+                style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: Colors.amberAccent,
-                    fontSize: 24),
+                    color: Theme.of(context).primaryColor,
+                    fontSize: 18),
               ),
             ],
           ),

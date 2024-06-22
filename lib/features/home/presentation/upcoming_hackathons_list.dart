@@ -21,7 +21,7 @@ class UpcomingHackathonsList extends StatelessWidget {
       BlocBuilder<HackathonCubit, HackathonState>(
         builder: (context, state) {
           final upcomingHackathons = state.hackathons
-              .where((hackathon) => hackathon.startDate.isAfter(DateTime.now()))
+              // .where((hackathon) => hackathon.startDate.isAfter(DateTime.now()))
               .toList();
 
           final upcomingHackathonsCount = upcomingHackathons.length;
