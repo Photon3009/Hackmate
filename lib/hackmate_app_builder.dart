@@ -185,7 +185,4 @@ class HackmateAppBuilder extends AppBuilder {
             ),
           ),
         );
-  // static Future<void> _initializeApp(BuildContext context) async {
-  //   await Future.delayed(const Duration(seconds: 3));
-  // }
 }

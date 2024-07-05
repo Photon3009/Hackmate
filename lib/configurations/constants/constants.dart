@@ -10,7 +10,7 @@ const kAppTitle = 'Hackmate';
 const kMontserratFontFamily = FontFamily.montserrat;
 
 const kApiEndpoint = 'https://cloud.appwrite.io/v1';
-const kProjectId = '65c0b74805ccdf910a30';
+const kProjectId = 'your-appwrite-project-id';
 
 const kAppIdentifier = 'hackmate';
 
